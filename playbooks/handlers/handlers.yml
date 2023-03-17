@@ -1,0 +1,10 @@
+- name: tools installed
+  shell: echo 'tools installed successfully'
+  #debug:
+   # msg: "tools installed successfully"
+
+- name: start httpd
+  service: name=httpd state=started
+
+- name: tools removed
+  shell: echo 'tools removed successfully'

@@ -1,0 +1,26 @@
+- name: this playbook will install packages on host machine
+  hosts: all
+  remote_user: ec2-user
+  become: True
+ 
+  tasks:
+  - name: install packages
+    yum:
+      name: ['httpd', 'pip']
+      state: installed
+    notify:
+    - tools installed
+    - start httpd
+
+  - meta: flush_handlers
+
+  - name: remove packages
+    yum:
+      name: ['httpd', 'pip']
+      state: removed
+    notify:
+    - tools removed
+
+
+  handlers:
+  - include: handlers/handlers.yml

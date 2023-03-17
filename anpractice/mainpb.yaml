@@ -1,0 +1,8 @@
+---
+- name: this playbook is main yaml file
+  hosts: all
+  remote_user: ec2-user
+
+  roles:
+  - httpd
+  - pip

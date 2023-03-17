@@ -1,0 +1,4 @@
+---
+- name: install pip2
+  yum: name=pip state=installed
+  become: yes

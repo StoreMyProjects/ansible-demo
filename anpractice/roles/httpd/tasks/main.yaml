@@ -1,0 +1,7 @@
+---
+- name: install httpd
+  yum: name=httpd state=installed
+  become: yes
+
+  notify:
+  - start httpd

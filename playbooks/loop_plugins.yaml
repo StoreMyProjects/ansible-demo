@@ -1,0 +1,8 @@
+- hosts: all
+  gather_facts: no
+  
+  tasks:
+  - file: dest=/home/ec2-user/myfiles1 state=directory
+
+  - copy: src={{ item }} dest=/home/ec2-user/myfiles1
+    with_fileglob: /home/ec2-user/myfiles/*

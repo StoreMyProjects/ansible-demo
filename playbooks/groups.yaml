@@ -1,0 +1,24 @@
+---
+# This is a demo of how the group command works.
+
+- hosts: all
+  remote_user: ec2-user
+  become: yes
+
+  pre_tasks:
+  - local_action: shell echo "Hi this is a pre-task step"
+
+  post_tasks:
+  - local_action: shell echo "Hi this is a post-task step"
+
+  tasks:
+
+    # Walk through group creation, modification, and deletion
+    - name: create a group
+      group: name=test
+
+    # You can only modify the group's gid
+    - group: name=test gid=5555
+
+    # And finally remove the group
+    - group: name=test state=absent

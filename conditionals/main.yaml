@@ -1,0 +1,15 @@
+---
+- hosts: all
+  remote_user: ec2-user
+
+  vars_files:
+  - "vars/external_vars.yaml"
+  - ["vars/$facter_operatingsystem.yaml", "vars/defaults.yaml"]
+
+  tasks:
+  - name: ensure apache is latest
+    action: "{{packager}} pkg={{apache}} state=latest"
+    become: yes
+
+  - name: ensure apache is running
+    service: name={{apache}} state=started
